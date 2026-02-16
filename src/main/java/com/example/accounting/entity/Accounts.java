@@ -1,5 +1,7 @@
 package com.example.accounting.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +17,7 @@ public class Accounts {
     @Column(name = "id")
     private int id;
 
+    @JsonProperty("user_id")
     @Column(name = "user_id", nullable = false)
     private int userId;
 
