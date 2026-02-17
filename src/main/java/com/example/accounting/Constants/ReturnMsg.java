@@ -13,7 +13,9 @@ public enum ReturnMsg {
     /* Accounts */
     ACCOUNT_NOT_FOUND(404, "帳號不存在"),
     /* Categories */
+    CATEGORY_NOT_FOUND(404, "記帳類別不存在"),
     /* Records */
+    RECORD_NOT_FOUND(404, "記帳明細不存在"),
     ;
 
     private final int statusCode;

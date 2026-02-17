@@ -1,5 +1,6 @@
 package com.example.accounting.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,12 +19,15 @@ public class Records {
     @Column(name = "id")
     private int id;
 
+    @JsonProperty("user_id")
     @Column(name = "user_id", nullable = false)
     private int userId;
 
+    @JsonProperty("account_id")
     @Column(name = "account_id", nullable = false)
     private int accountId;
 
+    @JsonProperty("category_id")
     @Column(name = "category_id", nullable = false)
     private int categoryId;
 
@@ -33,6 +37,7 @@ public class Records {
     @Column(name = "type", nullable = false)
     private int type;
 
+    @JsonProperty("record_date")
     @Column(name = "record_date", nullable = false)
     private LocalDate recordDate;
 
