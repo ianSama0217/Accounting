@@ -10,6 +10,10 @@ public enum ReturnMsg {
     PARAMS_ERROR(400, "參數錯誤"),
     SERVER_ERROR(500, "SERVER錯誤"),
     /* Users */
+    USERNAME_IS_EXISTED(409, "帳號名稱已存在"),
+    PASSWORD_PATTERN_ERROR(400, "密碼格式錯誤"),
+    USER_NOT_FOUND(404, "帳號不存在"),
+    PASSWORD_ERROR(400, "密碼錯誤"),
     /* Accounts */
     ACCOUNT_NOT_FOUND(404, "帳號不存在"),
     /* Categories */
