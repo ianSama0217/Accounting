@@ -4,9 +4,9 @@ import com.example.accounting.Constants.ReturnMsg;
 import com.example.accounting.Vo.BasicRes;
 import com.example.accounting.Vo.LoginReq;
 import com.example.accounting.Vo.UserRes;
-import com.example.accounting.dao.UsersDao;
-import com.example.accounting.entity.Users;
-import com.example.accounting.service.UsersService;
+import com.example.accounting.dao.UserDao;
+import com.example.accounting.entity.User;
+import com.example.accounting.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class UsersServiceImpl implements UsersService {
+public class UserServiceImpl implements UserService {
     @Resource
-    private UsersDao usersDao;
+    private UserDao usersDao;
 
     @Resource
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public BasicRes<Void> register(Users user) {
+    public BasicRes<Void> register(User user) {
         if(!checkParams(user.getUsername(), user.getPassword())){
             return BasicRes.fail(ReturnMsg.PARAMS_ERROR);
         }
@@ -57,7 +57,7 @@ public class UsersServiceImpl implements UsersService {
         }
 
         // 檢查username是否存在
-        Users user = usersDao.findByUsername(req.getUsername());
+        User user = usersDao.findByUsername(req.getUsername());
         if(user == null){
             return BasicRes.fail(ReturnMsg.USER_NOT_FOUND);
         }

@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "account")
 @Getter
 @Setter
-public class Categories {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,12 @@ public class Categories {
     @Column(name = "user_id", nullable = false)
     private int userId;
 
-    @Column(name = "name", length = 30, nullable = false)
+    @Column(name = "name", length = 60)
     private String name;
 
-    @Column(name = "type", nullable = false)
-    private int type;
+    @Column(name = "balance")
+    private int balance = 0;
 
-    public Categories() {
+    public Account() {
     }
 }

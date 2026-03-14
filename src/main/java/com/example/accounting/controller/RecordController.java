@@ -1,8 +1,8 @@
 package com.example.accounting.controller;
 
 import com.example.accounting.Vo.BasicRes;
-import com.example.accounting.entity.Records;
-import com.example.accounting.service.RecordsService;
+import com.example.accounting.entity.Record;
+import com.example.accounting.service.RecordService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("record")
-public class RecordsController {
+public class RecordController {
     @Resource
-    private RecordsService recordsService;
+    private RecordService recordsService;
 
     @PostMapping
-    public BasicRes<Void> create(@RequestBody Records record){
+    public BasicRes<Void> create(@RequestBody Record record){
         return recordsService.create(record);
     }
 
@@ -25,21 +25,21 @@ public class RecordsController {
     }
 
     @GetMapping("/{recordId}")
-    public BasicRes<Records> getById(@PathVariable int recordId){
+    public BasicRes<Record> getById(@PathVariable int recordId){
         return recordsService.getById(recordId);
     }
 
     @GetMapping("/user/{userId}")
-    public BasicRes<List<Records>> getByUserId(@PathVariable int userId){
+    public BasicRes<List<Record>> getByUserId(@PathVariable int userId){
         return recordsService.getByUserId(userId);
     }
     @GetMapping("/account/{accountId}")
-    public BasicRes<List<Records>> getByAccountId(@PathVariable int accountId){
+    public BasicRes<List<Record>> getByAccountId(@PathVariable int accountId){
         return recordsService.getByAccountId(accountId);
     }
 
     @GetMapping("/category/{categoryId}")
-    public BasicRes<List<Records>> getByCategoryId(@PathVariable int categoryId){
+    public BasicRes<List<Record>> getByCategoryId(@PathVariable int categoryId){
         return recordsService.getByCategoryId(categoryId);
     }
 }

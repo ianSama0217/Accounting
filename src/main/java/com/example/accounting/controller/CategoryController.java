@@ -1,8 +1,8 @@
 package com.example.accounting.controller;
 
 import com.example.accounting.Vo.BasicRes;
-import com.example.accounting.entity.Categories;
-import com.example.accounting.service.CategoriesService;
+import com.example.accounting.entity.Category;
+import com.example.accounting.service.CategoryService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("category")
-public class CategoriesController {
+public class CategoryController {
     @Resource
-    private CategoriesService categoriesService;
+    private CategoryService categoriesService;
 
     @PostMapping
-    public BasicRes<Void> create(@RequestBody Categories categories){
+    public BasicRes<Void> create(@RequestBody Category categories){
        return categoriesService.create(categories);
     }
 
@@ -25,7 +25,7 @@ public class CategoriesController {
     }
 
     @GetMapping("/user/{userId}")
-    public BasicRes<List<Categories>> getByUserId(@PathVariable int userId){
+    public BasicRes<List<Category>> getByUserId(@PathVariable int userId){
         return categoriesService.getByUserId(userId);
     }
 }

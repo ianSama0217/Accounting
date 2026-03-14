@@ -1,6 +1,6 @@
 package com.example.accounting.Vo;
 
-import com.example.accounting.entity.Users;
+import com.example.accounting.entity.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
@@ -17,7 +17,7 @@ public class UserRes {
     @JsonProperty("create_at")
     private LocalDateTime createAt;
 
-    public UserRes(Users user) {
+    public UserRes(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.role = user.getRole();

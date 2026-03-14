@@ -3,19 +3,19 @@ package com.example.accounting.controller;
 import com.example.accounting.Vo.BasicRes;
 import com.example.accounting.Vo.LoginReq;
 import com.example.accounting.Vo.UserRes;
-import com.example.accounting.entity.Users;
-import com.example.accounting.service.UsersService;
+import com.example.accounting.entity.User;
+import com.example.accounting.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
-public class UsersController {
+public class UserController {
     @Resource
-    private UsersService usersService;
+    private UserService usersService;
 
     @PostMapping("/register")
-    public BasicRes<Void> register(@RequestBody Users user){
+    public BasicRes<Void> register(@RequestBody User user){
         return usersService.register(user);
     }
 

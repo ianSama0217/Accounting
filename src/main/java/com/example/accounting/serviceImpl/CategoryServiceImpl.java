@@ -2,22 +2,21 @@ package com.example.accounting.serviceImpl;
 
 import com.example.accounting.Constants.ReturnMsg;
 import com.example.accounting.Vo.BasicRes;
-import com.example.accounting.dao.CategoriesDao;
-import com.example.accounting.entity.Accounts;
-import com.example.accounting.entity.Categories;
-import com.example.accounting.service.CategoriesService;
+import com.example.accounting.dao.CategoryDao;
+import com.example.accounting.entity.Category;
+import com.example.accounting.service.CategoryService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoriesServiceImpl implements CategoriesService {
+public class CategoryServiceImpl implements CategoryService {
     @Resource
-    private CategoriesDao categoriesDao;
+    private CategoryDao categoriesDao;
 
     @Override
-    public BasicRes<Void> create(Categories categories) {
+    public BasicRes<Void> create(Category categories) {
         boolean isUpdate = false;
 
         if(categories.getName().isEmpty() || categories.getUserId() == 0
@@ -54,13 +53,13 @@ public class CategoriesServiceImpl implements CategoriesService {
     }
 
     @Override
-    public BasicRes<List<Categories>> getByUserId(int userId) {
+    public BasicRes<List<Category>> getByUserId(int userId) {
         //TODO 檢查USER是否存在
 
-        List<Categories> list = categoriesDao.findByUserId(userId);
+        List<Category> list = categoriesDao.findByUserId(userId);
 
         if (list.isEmpty()) {
-            return BasicRes.<List<Categories>>fail(ReturnMsg.CATEGORY_NOT_FOUND);
+            return BasicRes.<List<Category>>fail(ReturnMsg.CATEGORY_NOT_FOUND);
         }
 
         return BasicRes.success(ReturnMsg.SUCCESSFUL, list);

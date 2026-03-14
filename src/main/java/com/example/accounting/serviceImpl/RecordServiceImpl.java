@@ -2,11 +2,9 @@ package com.example.accounting.serviceImpl;
 
 import com.example.accounting.Constants.ReturnMsg;
 import com.example.accounting.Vo.BasicRes;
-import com.example.accounting.dao.RecordsDao;
-import com.example.accounting.entity.Accounts;
-import com.example.accounting.entity.Categories;
-import com.example.accounting.entity.Records;
-import com.example.accounting.service.RecordsService;
+import com.example.accounting.dao.RecordDao;
+import com.example.accounting.entity.Record;
+import com.example.accounting.service.RecordService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +12,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class RecordsServiceImpl implements RecordsService {
+public class RecordServiceImpl implements RecordService {
     @Resource
-    private RecordsDao recordsDao;
+    private RecordDao recordsDao;
 
     @Override
-    public BasicRes<Void> create(Records record) {
+    public BasicRes<Void> create(Record record) {
         boolean isUpdate = false;
 
         if(record.getUserId() == 0 || record.getAccountId() == 0 || record.getCategoryId() == 0
@@ -58,46 +56,46 @@ public class RecordsServiceImpl implements RecordsService {
     }
 
     @Override
-    public BasicRes<Records> getById(int recordId) {
+    public BasicRes<Record> getById(int recordId) {
         return recordsDao.findById(recordId)
                 .map(record -> BasicRes.success(ReturnMsg.SUCCESSFUL, record))
-                .orElseGet(() -> BasicRes.<Records>fail(ReturnMsg.RECORD_NOT_FOUND));
+                .orElseGet(() -> BasicRes.<Record>fail(ReturnMsg.RECORD_NOT_FOUND));
     }
 
     @Override
-    public BasicRes<List<Records>> getByUserId(int userId) {
+    public BasicRes<List<Record>> getByUserId(int userId) {
         //TODO 檢查USER是否存在
 
-        List<Records> list = recordsDao.findByUserId(userId);
+        List<Record> list = recordsDao.findByUserId(userId);
 
         if (list.isEmpty()) {
-            return BasicRes.<List<Records>>fail(ReturnMsg.RECORD_NOT_FOUND);
+            return BasicRes.<List<Record>>fail(ReturnMsg.RECORD_NOT_FOUND);
         }
 
         return BasicRes.success(ReturnMsg.SUCCESSFUL, list);
     }
 
     @Override
-    public BasicRes<List<Records>> getByAccountId(int accountId) {
+    public BasicRes<List<Record>> getByAccountId(int accountId) {
         //TODO 檢查ACCOUNT是否存在
 
-        List<Records> list = recordsDao.findByAccountId(accountId);
+        List<Record> list = recordsDao.findByAccountId(accountId);
 
         if (list.isEmpty()) {
-            return BasicRes.<List<Records>>fail(ReturnMsg.RECORD_NOT_FOUND);
+            return BasicRes.<List<Record>>fail(ReturnMsg.RECORD_NOT_FOUND);
         }
 
         return BasicRes.success(ReturnMsg.SUCCESSFUL, list);
     }
 
     @Override
-    public BasicRes<List<Records>> getByCategoryId(int categoryId) {
+    public BasicRes<List<Record>> getByCategoryId(int categoryId) {
         //TODO 檢查category是否存在
 
-        List<Records> list = recordsDao.findByCategoryId(categoryId);
+        List<Record> list = recordsDao.findByCategoryId(categoryId);
 
         if (list.isEmpty()) {
-            return BasicRes.<List<Records>>fail(ReturnMsg.RECORD_NOT_FOUND);
+            return BasicRes.<List<Record>>fail(ReturnMsg.RECORD_NOT_FOUND);
         }
 
         return BasicRes.success(ReturnMsg.SUCCESSFUL, list);

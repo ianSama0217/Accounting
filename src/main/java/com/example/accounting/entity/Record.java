@@ -9,10 +9,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "records")
+@Table(name = "record")
 @Getter
 @Setter
-public class Records {
+public class Record {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +47,6 @@ public class Records {
     @Column(name = "create_at")
     private LocalDateTime createAt;
 
-    public Records() {
+    public Record() {
     }
 }
